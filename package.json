@@ -1,0 +1,15 @@
+{
+  "name": "mocha-parallel",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/zero-five test/one-three test/two-four"
+  },
+  "keywords": [],
+  "author": "Michael Schoonmaker <michael.r.schoonmaker@gmail.com> (https://www.schoonology.com/)",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "~5.0.0"
+  }
+}
