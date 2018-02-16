@@ -1,8 +1,8 @@
 {
-  "name": "mocha-parallel",
+  "name": "coffeehouse",
   "version": "0.1.0",
   "description": "",
-  "main": "lib/parallel.js",
+  "main": "lib/parent.js",
   "scripts": {
     "test": "node lib/parent test/**/*.js",
     "test:sync": "mocha test/**/*.js"
