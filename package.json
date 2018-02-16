@@ -2,7 +2,7 @@
   "name": "mocha-parallel",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/parallel.js",
   "scripts": {
     "test": "node lib/parent test/**/*.js",
     "test:sync": "mocha test/**/*.js"
