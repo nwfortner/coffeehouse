@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node lib/child"
+    "test": "node lib/parent test/zero-five test/one-three test/two-four"
   },
   "keywords": [],
   "author": "Michael Schoonmaker <michael.r.schoonmaker@gmail.com> (https://www.schoonology.com/)",

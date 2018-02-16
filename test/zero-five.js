@@ -7,7 +7,7 @@ describe('Mocha parallelization', function () {
   })
 
   it('should parallelize between files', async function () {
-    await sleep(50)
+    await sleep(500)
     const summary = await readSummary()
 
     assert.equal(summary, '1234')
