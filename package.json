@@ -7,8 +7,8 @@
   },
   "main": "lib/parent.js",
   "scripts": {
-    "test": "node lib/parent test/**/*.js",
-    "test:sync": "mocha test/**/*.js"
+    "test": "./bin/coffeehouse",
+    "test:sync": "mocha"
   },
   "keywords": [],
   "author": "Michael Schoonmaker <michael.r.schoonmaker@gmail.com> (https://www.schoonology.com/)",
