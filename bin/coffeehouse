@@ -13,6 +13,9 @@ const argv = yargs
       type: 'string'
     })
   })
+  .option('recursive', {
+    boolean: true
+  })
   .parse(process.argv.slice(2))
 
 parent.start(argv)
