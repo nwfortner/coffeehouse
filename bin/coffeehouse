@@ -16,6 +16,13 @@ const argv = yargs
   .option('recursive', {
     boolean: true
   })
+  .option('require', {
+    array: true,
+    default: [],
+    nargs: 1,
+    normalize: true,
+    string: true
+  })
   .parse(process.argv.slice(2))
 
 parent.start(argv)
