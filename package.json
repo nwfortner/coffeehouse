@@ -2,6 +2,9 @@
   "name": "coffeehouse",
   "version": "0.1.0",
   "description": "",
+  "bin": {
+    "coffeehouse": "bin/coffeehouse"
+  },
   "main": "lib/parent.js",
   "scripts": {
     "test": "node lib/parent test/**/*.js",
