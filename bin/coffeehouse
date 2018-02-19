@@ -1,3 +1,18 @@
 #!/usr/bin/env node
+const parent = require('../lib/parent')
+const pkg = require('../package.json')
+const yargs = require('yargs')
 
-require('../lib/parent')
+const argv = yargs
+  .version(pkg.version).alias('V', 'version')
+  .usage('[debug] [options] [files]')
+  .help()
+  .command('$0 [files..]', '', (yargs) => {
+    yargs.positional('files', {
+      default: ['test'],
+      type: 'string'
+    })
+  })
+  .parse(process.argv.slice(2))
+
+parent.start(argv)
