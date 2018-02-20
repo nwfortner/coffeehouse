@@ -24,6 +24,11 @@ const argv = yargs
   .option('recursive', {
     boolean: true
   })
+  .option('reporter', {
+    default: 'spec',
+    nargs: 1,
+    string: true
+  })
   .option('require', {
     array: true,
     default: [],
