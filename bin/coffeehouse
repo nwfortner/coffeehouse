@@ -23,6 +23,13 @@ const argv = yargs
     normalize: true,
     string: true
   })
+  .option('timeout', {
+    default: 2000
+  })
+  .option('timeouts', {
+    boolean: true,
+    default: true
+  })
   .parse(process.argv.slice(2))
 
 parent.start(argv)
