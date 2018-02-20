@@ -1,7 +1,7 @@
 {
   "name": "coffeehouse",
   "version": "0.1.0",
-  "description": "",
+  "description": "Run through many different Mocha scenarios concurrently with your very own Coffeehouse.",
   "bin": {
     "coffeehouse": "bin/coffeehouse"
   },
