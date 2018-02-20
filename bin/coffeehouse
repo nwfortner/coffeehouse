@@ -13,6 +13,14 @@ const argv = yargs
       type: 'string'
     })
   })
+  .option('fgrep', {
+    nargs: 1,
+    string: true
+  })
+  .option('grep', {
+    nargs: 1,
+    string: true
+  })
   .option('recursive', {
     boolean: true
   })
