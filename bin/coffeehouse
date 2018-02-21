@@ -3,46 +3,58 @@ const main = require('../lib/parent/main')
 const pkg = require('../package.json')
 const yargs = require('yargs')
 
-const argv = yargs
-  .version(pkg.version).alias('V', 'version')
-  .usage('[debug] [options] [files]')
-  .help()
-  .command('$0 [files..]', '', (yargs) => {
-    yargs.positional('files', {
-      default: ['test'],
-      type: 'string'
-    })
-  })
-  .option('fgrep', {
-    nargs: 1,
-    string: true
-  })
-  .option('grep', {
-    nargs: 1,
-    string: true
-  })
-  .option('recursive', {
-    boolean: true
-  })
-  .option('reporter', {
-    default: 'spec',
-    nargs: 1,
-    string: true
-  })
-  .option('require', {
+// Helper functions to duplicate the parsing behaviour Mocha uses.
+function flag(defaultValue = false) {
+  return {
+    boolean: true,
+    default: defaultValue
+  }
+}
+function multipleStrings() {
+  return {
     array: true,
     default: [],
     nargs: 1,
-    normalize: true,
     string: true
-  })
-  .option('timeout', {
-    default: 2000
-  })
-  .option('timeouts', {
-    boolean: true,
-    default: true
-  })
-  .parse(process.argv.slice(2))
+  }
+}
+function numberArg(defaultValue) {
+  return {
+    default: defaultValue,
+    nargs: 1
+  }
+}
+function stringArg(defaultValue) {
+  return {
+    default: defaultValue,
+    nargs: 1,
+    string: true
+  }
+}
 
-main.start(argv)
+const parser = yargs
+  .usage('$0 [files..]', pkg.description, (yargs) => {
+    yargs
+      .positional('files', {
+        default: ['test'],
+        type: 'string'
+      })
+      .example('coffeehouse --recursive spec', 'Scan `spec/` recursively for test files, running all files concurrently.')
+      .epilogue('For more information, see https://github.com/foxbroadcasting/coffeehouse.')
+  })
+  .option('fgrep', stringArg())
+    .alias('fgrep', 'f')
+  .option('grep', stringArg())
+    .alias('grep', 'g')
+  .option('recursive', flag())
+  .option('reporter', stringArg('spec'))
+    .alias('reporter', 'R')
+  .option('require', multipleStrings())
+    .alias('require', 'r')
+  .option('timeout', numberArg(2000))
+    .alias('timeout', 't')
+  .option('timeouts', flag(true))
+  .version(pkg.version)
+    .alias('version', 'V')
+
+main.start(parser.parse(process.argv.slice(2)))
