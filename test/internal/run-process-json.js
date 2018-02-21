@@ -7,7 +7,7 @@ module.exports = function (program) {
         if (err) {
           reject(err);
         }
-        res.output = JSON.parse(res.output);
+        res.output = (res.output) ? JSON.parse(res.output) : res.output;
         resolve(res);
       });
     });
