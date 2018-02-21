@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const parent = require('../lib/parent')
+const main = require('../lib/parent/main')
 const pkg = require('../package.json')
 const yargs = require('yargs')
 
@@ -45,4 +45,4 @@ const argv = yargs
   })
   .parse(process.argv.slice(2))
 
-parent.start(argv)
+main.start(argv)
