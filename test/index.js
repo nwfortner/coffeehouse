@@ -19,6 +19,7 @@ describe('Coffeehouse', () => {
         .to.have.property('stats');
       expect(this.res.output.stats.passes).to.equal(3);
       expect(this.res.output.stats.failures).to.equal(0);
+      expect(this.res.output.stats.pending).to.equal(0);
     });
   });
 
@@ -34,6 +35,23 @@ describe('Coffeehouse', () => {
         .to.have.property('stats');
       expect(this.res.output.stats.passes).to.equal(1);
       expect(this.res.output.stats.failures).to.equal(0);
+      expect(this.res.output.stats.pending).to.equal(0);
+    });
+  });
+
+  describe('it.only', () => {
+    before(async function () {
+      this.res = await runCoffeehouseJson(['test/fixtures/it-only']);
+    });
+
+    it('should have correct stats', function () {
+      expect(this.res.code, 'code').to.equal(0);
+      expect(this.res).to.have.property('output')
+        .to.be.instanceOf(Object)
+        .to.have.property('stats');
+      expect(this.res.output.stats.passes).to.equal(2);
+      expect(this.res.output.stats.failures).to.equal(0);
+      expect(this.res.output.stats.pending).to.equal(0);
     });
   });
 });
@@ -62,6 +80,19 @@ describe('Comparing Coffeehouse output to Mocha', () => {
         before(async function () {
           this.mochaRes = await runMocha(['test/fixtures/describe-only'].concat(this.reporterOptions));
           this.coffeeRes = await runCoffeehouse(['test/fixtures/describe-only'].concat(this.reporterOptions));
+        });
+
+        it('should have the same output', function () {
+          cleanReporterOutput(this.mochaRes, reporter);
+          cleanReporterOutput(this.coffeeRes, reporter);
+          expect(this.coffeeRes).excludingEvery(['duration', 'start', 'end']).to.deep.equal(this.mochaRes);
+        });
+      });
+
+      describe('it.only', () => {
+        before(async function () {
+          this.mochaRes = await runMocha(['test/fixtures/it-only/a.js', 'test/fixtures/it-only/b.js'].concat(this.reporterOptions));
+          this.coffeeRes = await runCoffeehouse(['test/fixtures/it-only'].concat(this.reporterOptions));
         });
 
         it('should have the same output', function () {
