@@ -22,9 +22,9 @@ describe('Coffeehouse', () => {
     });
   });
 
-  describe('Describe.only', () => {
+  describe('describe.only', () => {
     before(async function () {
-      this.res = await runCoffeehouseJson(['test/fixtures/only-suite']);
+      this.res = await runCoffeehouseJson(['test/fixtures/describe-only']);
     });
 
     it('should have correct stats', function () {
@@ -58,10 +58,10 @@ describe('Comparing Coffeehouse output to Mocha', () => {
         });
       });
 
-      describe('Describe.only', () => {
+      describe('describe.only', () => {
         before(async function () {
-          this.mochaRes = await runMocha(['test/fixtures/only-suite'].concat(this.reporterOptions));
-          this.coffeeRes = await runCoffeehouse(['test/fixtures/only-suite'].concat(this.reporterOptions));
+          this.mochaRes = await runMocha(['test/fixtures/describe-only'].concat(this.reporterOptions));
+          this.coffeeRes = await runCoffeehouse(['test/fixtures/describe-only'].concat(this.reporterOptions));
         });
 
         it('should have the same output', function () {
