@@ -7,13 +7,14 @@
   },
   "main": "lib/parent.js",
   "scripts": {
-    "test": "./bin/coffeehouse",
-    "test:sync": "mocha"
+    "test": "mocha test/index.js --no-timeouts --require test/plugins"
   },
   "keywords": [],
   "author": "Michael Schoonmaker <michael.r.schoonmaker@gmail.com> (https://www.schoonology.com/)",
   "license": "MIT",
   "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-exclude": "^1.0.7",
     "mocha": "~5.0.0"
   },
   "dependencies": {
