@@ -1,4 +1,4 @@
-const use = require('chai').use;
+const { use } = require('chai');
 const chaiExclude = require('chai-exclude');
 
 use(chaiExclude);

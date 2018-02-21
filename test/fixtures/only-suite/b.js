@@ -1,3 +1,3 @@
-describe('this should not run', function () {
-  it('should not run', function () {});
+describe('this should not run', () => {
+  it('should not run', () => {});
 });

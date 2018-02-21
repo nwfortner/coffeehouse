@@ -1,7 +1,7 @@
 const { sleep } = require('../../helpers');
 
-describe('b', function () {
-  it('should pass', async function () {
+describe('b', () => {
+  it('should pass', async () => {
     await sleep(200);
   });
 });

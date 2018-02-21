@@ -2,12 +2,12 @@ const {
   runMocha,
   runCoffeehouse,
   runCoffeehouseJson,
-  cleanReporterOutput
+  cleanReporterOutput,
 } = require('./helpers');
-const expect = require('chai').expect;
+const { expect } = require('chai');
 
-describe('Coffeehouse', function () {
-  describe('Simple asyncronous tests', function () {
+describe('Coffeehouse', () => {
+  describe('Simple asyncronous tests', () => {
     before(async function () {
       this.res = await runCoffeehouseJson(['test/fixtures/simple']);
     });
@@ -22,7 +22,7 @@ describe('Coffeehouse', function () {
     });
   });
 
-  describe('Describe.only', function () {
+  describe('Describe.only', () => {
     before(async function () {
       this.res = await runCoffeehouseJson(['test/fixtures/only-suite']);
     });
@@ -38,15 +38,14 @@ describe('Coffeehouse', function () {
   });
 });
 
-describe('Comparing Coffeehouse output to Mocha', function () {
-
+describe('Comparing Coffeehouse output to Mocha', () => {
   ['spec', 'json'].forEach((reporter) => {
-    describe(`${reporter} reporter`, function () {
+    describe(`${reporter} reporter`, () => {
       before(function () {
         this.reporterOptions = ['--reporter', reporter];
       });
 
-      describe('Simple asyncronous test', function () {
+      describe('Simple asyncronous test', () => {
         before(async function () {
           this.mochaRes = await runMocha(['test/fixtures/simple/c.js', 'test/fixtures/simple/b.js', 'test/fixtures/simple/a.js'].concat(this.reporterOptions));
           this.coffeeRes = await runCoffeehouse(['test/fixtures/simple'].concat(this.reporterOptions));
@@ -59,7 +58,7 @@ describe('Comparing Coffeehouse output to Mocha', function () {
         });
       });
 
-      describe('Describe.only', function () {
+      describe('Describe.only', () => {
         before(async function () {
           this.mochaRes = await runMocha(['test/fixtures/only-suite'].concat(this.reporterOptions));
           this.coffeeRes = await runCoffeehouse(['test/fixtures/only-suite'].concat(this.reporterOptions));
@@ -73,5 +72,4 @@ describe('Comparing Coffeehouse output to Mocha', function () {
       });
     });
   });
-
 });

@@ -3,8 +3,8 @@ const runProcessJson = require('./internal/run-process-json');
 
 module.exports = {
 
-  sleep: function (ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms))
+  sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   },
 
   runCoffeehouse: runProcess('bin/coffeehouse'),
@@ -16,14 +16,12 @@ module.exports = {
    * - spec: remove all timing strings
    * - json: convert to json (timing properties can be exculded in test)
    */
-  cleanReporterOutput: function(res, reporter) {
+  cleanReporterOutput(res, reporter) {
     if (reporter === 'spec') {
-      res.output = res.output.split('\n').map((line) => {
-        return line.replace(/\([0-9]*ms\)$/g, "");
-      }).join('\n');
+      res.output = res.output.split('\n').map(line => line.replace(/\([0-9]*ms\)$/g, '')).join('\n');
     } else if (reporter === 'json') {
       res.output = JSON.parse(res.output);
     }
-  }
+  },
 
 };
