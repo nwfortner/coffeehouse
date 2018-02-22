@@ -1,3 +1,5 @@
-describe.only('this should run', () => {
-  it('should run', () => {});
+/* eslint-disable mocha/no-exclusive-tests */
+
+describe.only('this should run', function () {
+  it('should run', function () {});
 });

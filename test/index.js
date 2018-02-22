@@ -6,8 +6,8 @@ const {
 } = require('./helpers');
 const { expect } = require('chai');
 
-describe('Coffeehouse', () => {
-  describe('Simple asyncronous tests', () => {
+describe('Coffeehouse', function () {
+  describe('Simple asyncronous tests', function () {
     before(async function () {
       this.res = await runCoffeehouseJson(['test/fixtures/simple']);
     });
@@ -23,7 +23,7 @@ describe('Coffeehouse', () => {
     });
   });
 
-  describe('describe.only', () => {
+  describe('describe.only', function () {
     before(async function () {
       this.res = await runCoffeehouseJson(['test/fixtures/describe-only']);
     });
@@ -39,7 +39,7 @@ describe('Coffeehouse', () => {
     });
   });
 
-  describe('it.only', () => {
+  describe('it.only', function () {
     before(async function () {
       this.res = await runCoffeehouseJson(['test/fixtures/it-only']);
     });
@@ -56,14 +56,14 @@ describe('Coffeehouse', () => {
   });
 });
 
-describe('Comparing Coffeehouse output to Mocha', () => {
+describe('Comparing Coffeehouse output to Mocha', function () {
   ['spec', 'json', 'dot'].forEach((reporter) => {
-    describe(`${reporter} reporter`, () => {
+    describe(`${reporter} reporter`, function () {
       before(function () {
         this.reporterOptions = ['--reporter', reporter];
       });
 
-      describe('Simple asyncronous test', () => {
+      describe('Simple asyncronous test', function () {
         before(async function () {
           this.mochaRes = await runMocha(['test/fixtures/simple/c.js', 'test/fixtures/simple/b.js', 'test/fixtures/simple/a.js'].concat(this.reporterOptions));
           this.coffeeRes = await runCoffeehouse(['test/fixtures/simple'].concat(this.reporterOptions));
@@ -76,7 +76,7 @@ describe('Comparing Coffeehouse output to Mocha', () => {
         });
       });
 
-      describe('describe.only', () => {
+      describe('describe.only', function () {
         before(async function () {
           this.mochaRes = await runMocha(['test/fixtures/describe-only'].concat(this.reporterOptions));
           this.coffeeRes = await runCoffeehouse(['test/fixtures/describe-only'].concat(this.reporterOptions));
@@ -89,7 +89,7 @@ describe('Comparing Coffeehouse output to Mocha', () => {
         });
       });
 
-      describe('it.only', () => {
+      describe('it.only', function () {
         before(async function () {
           this.mochaRes = await runMocha(['test/fixtures/it-only/a.js', 'test/fixtures/it-only/b.js'].concat(this.reporterOptions));
           this.coffeeRes = await runCoffeehouse(['test/fixtures/it-only'].concat(this.reporterOptions));

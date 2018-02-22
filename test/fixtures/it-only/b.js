@@ -1,3 +1,5 @@
+/* eslint-disable mocha/no-exclusive-tests */
+
 const { sleep } = require('../../helpers');
 
 describe('b', function () {
