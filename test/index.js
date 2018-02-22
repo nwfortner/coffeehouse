@@ -57,7 +57,7 @@ describe('Coffeehouse', () => {
 });
 
 describe('Comparing Coffeehouse output to Mocha', () => {
-  ['spec', 'json'].forEach((reporter) => {
+  ['spec', 'json', 'dot'].forEach((reporter) => {
     describe(`${reporter} reporter`, () => {
       before(function () {
         this.reporterOptions = ['--reporter', reporter];

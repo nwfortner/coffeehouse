@@ -17,7 +17,7 @@ module.exports = {
    * - json: convert to json (timing properties can be exculded in test)
    */
   cleanReporterOutput(res, reporter) {
-    if (reporter === 'spec') {
+    if (reporter === 'spec' || reporter == 'dot') {
       res.output = res.output.split('\n').map(line => line.replace(/\([0-9]*ms\)$/g, '')).join('\n');
     } else if (reporter === 'json') {
       res.output = JSON.parse(res.output);
