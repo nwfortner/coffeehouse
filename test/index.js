@@ -54,6 +54,26 @@ describe('Coffeehouse', function () {
       expect(this.res.output.stats.pending).to.equal(0);
     });
   });
+
+  describe('overriding mocha require in --required paths', () => {
+    before(async function () {
+      this.res = await runCoffeehouseJson(['test/fixtures/mocha-override', '--require', 'test/fixtures/mocha-override']);
+    });
+
+    it('should not override original Mocha', () => {
+      expect(require('mocha')).not.to.have.property('__coffeehouse');
+    });
+
+    it('should have correct stats', function () {
+      expect(this.res.code, 'code').to.equal(0);
+      expect(this.res).to.have.property('output')
+        .to.be.instanceOf(Object)
+        .to.have.property('stats');
+      expect(this.res.output.stats.passes).to.equal(1);
+      expect(this.res.output.stats.failures).to.equal(0);
+      expect(this.res.output.stats.pending).to.equal(0);
+    });
+  });
 });
 
 describe('Comparing Coffeehouse output to Mocha', function () {
